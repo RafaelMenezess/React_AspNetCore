@@ -12,12 +12,22 @@ function App() {
     },
   ];
 
+  function addAtividades(e) {
+    e.preventDefault();
+
+    const atividade = {
+      id: document.getElementById("id").value,
+      descricao: document.getElementById("descricao").value,
+    };
+    atividades.push(atividade);
+  }
+
   return (
     <>
       <form>
         <input id="id" type="text" placeholder="id" />
         <input id="descricao" type="text" placeholder="descricao" />
-        <button>+ Atividade</button>
+        <button onClick={addAtividades}>+ Atividade</button>
       </form>
 
       <div className="mt-3">

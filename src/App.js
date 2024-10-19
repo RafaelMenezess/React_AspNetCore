@@ -28,20 +28,33 @@ function App() {
 
   return (
     <>
-      <form>
-        <input id="id" type="text" placeholder="id" />
-        <input id="descricao" type="text" placeholder="descricao" />
-        <button onClick={addAtividades}>+ Atividade</button>
+      <form className="row g-3">
+        <div className="col-md-6">
+          <label for="inputEmail4" className="form-label">
+            Id
+          </label>
+          <input id="id" type="text" className="form-control" />
+        </div>
+        <div className="col-md-6">
+          <label for="inputEmail4" className="form-label">
+            Descrição
+          </label>
+          <input id="descricao" type="text" className="form-control" />
+        </div>
+        <hr />
+        <div class="col-12">
+          <button className="btn btn-outline-secondary" onClick={addAtividades}>
+            + Atividade
+          </button>
+        </div>
       </form>
 
       <div className="mt-3">
-        <ul className="list-group">
-          {atividades.map((ativ) => (
-            <li key={ativ.id} className="list-group-item">
-              {ativ.id} - {ativ.descricao}
-            </li>
-          ))}
-        </ul>
+        {atividades.map((ativ) => (
+          <li key={ativ.id} className="list-group-item">
+            {ativ.id} - {ativ.descricao}
+          </li>
+        ))}
       </div>
     </>
   );

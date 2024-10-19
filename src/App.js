@@ -51,9 +51,13 @@ function App() {
 
       <div className="mt-3">
         {atividades.map((ativ) => (
-          <li key={ativ.id} className="list-group-item">
-            {ativ.id} - {ativ.descricao}
-          </li>
+          <div key={ativ.id} className="card mb-2 shadow-sm">
+            <div className="card-body">
+              <p className="card-text">
+                {ativ.id} - {ativ.descricao}
+              </p>
+            </div>
+          </div>
         ))}
       </div>
     </>

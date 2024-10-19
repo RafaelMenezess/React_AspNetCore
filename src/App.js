@@ -58,7 +58,12 @@ function App() {
                   <span className="badge bg-secondary me-1">{ativ.id}</span>-
                   título
                 </h5>
-                <h6>Prioridade: Normal</h6>
+                <h6>
+                  Prioridade:{" "}
+                  <span className="ms-1 text-black">
+                    <i className="me-1 fa-regular fa-face-frown"></i> Alta
+                  </span>
+                </h6>
               </div>
               <p className="card-text">{ativ.descricao}</p>
             </div>

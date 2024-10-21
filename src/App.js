@@ -45,14 +45,14 @@ function App() {
     }
   }
 
-  function prioridadeStyle(param) {
+  function prioridadeStyle(param, icone) {
     switch (param) {
       case "1":
-        return "smile";
+        return icone ? "smile" : "success";
       case "2":
-        return "meh";
+        return icone ? "meh" : "dark";
       case "3":
-        return "frown";
+        return icone ? "frown" : "warning";
       default:
         return "Não definido";
     }
@@ -63,7 +63,18 @@ function App() {
       <form className="row g-3">
         <div className="col-md-6">
           <label className="form-label">Id</label>
-          <input id="id" type="text" className="form-control" />
+          <input
+            id="id"
+            type="text"
+            className="form-control"
+            readOnly
+            value={
+              Math.max.apply(
+                Math,
+                atividades.map((item) => item.id)
+              ) + 1
+            }
+          />
         </div>
         <div className="col-md-6">
           <label className="form-label">Prioridade</label>
@@ -83,7 +94,7 @@ function App() {
           <input id="descricao" type="text" className="form-control" />
         </div>
         <hr />
-        <div class="col-12">
+        <div className="col-12">
           <button className="btn btn-outline-secondary" onClick={addAtividades}>
             + Atividade
           </button>
@@ -92,7 +103,12 @@ function App() {
 
       <div className="mt-3">
         {atividades.map((ativ) => (
-          <div key={ativ.id} className="card mb-2 shadow-sm">
+          <div
+            key={ativ.id}
+            className={
+              "card mb-2 shadow-sm border-" + prioridadeStyle(ativ.prioridade)
+            }
+          >
             <div className="card-body">
               <div className="d-flex justify-content-between">
                 <h5 className="card-title">
@@ -101,10 +117,13 @@ function App() {
                 </h5>
                 <h6>
                   Prioridade:{" "}
-                  <span className="ms-1 text-black">
+                  <span
+                    className={"ms-1 text-" + prioridadeStyle(ativ.prioridade)}
+                  >
                     <i
                       className={
-                        "me-1 far fa-face-" + prioridadeStyle(ativ.prioridade)
+                        "me-1 far fa-face-" +
+                        prioridadeStyle(ativ.prioridade, true)
                       }
                     ></i>{" "}
                     {prioridadeLabel(ativ.prioridade)}

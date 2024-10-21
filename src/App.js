@@ -1,7 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import AtividadeForm from "./components/AtividadeForm";
-import Atividade from "./components/Atividade";
+import AtividadeLista from "./components/AtividadeLista";
 
 let initialState = [
   {
@@ -44,16 +44,10 @@ function App() {
   return (
     <>
       <AtividadeForm addAtividade={addAtividade} atividades={atividades} />
-
-      <div className="mt-3">
-        {atividades.map((ativ) => (
-          <Atividade
-            key={ativ.id}
-            ativ={ativ}
-            deletarAtividade={deletarAtividade}
-          />
-        ))}
-      </div>
+      <AtividadeLista
+        atividades={atividades}
+        deletarAtividade={deletarAtividade}
+      />
     </>
   );
 }

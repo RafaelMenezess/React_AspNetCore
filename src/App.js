@@ -4,13 +4,13 @@ import { useState } from "react";
 let initialState = [
   {
     id: 1,
-    prioridade: "baixa",
+    prioridade: "1",
     titulo: "titulo",
     descricao: "Primeira Atividade",
   },
   {
     id: 2,
-    prioridade: "media",
+    prioridade: "2",
     titulo: "titulo",
     descricao: "Segunda Atividade",
   },
@@ -30,6 +30,32 @@ function App() {
     };
 
     setAtividades([...atividades, { ...atividade }]);
+  }
+
+  function prioridadeLabel(param) {
+    switch (param) {
+      case "1":
+        return "Baixa";
+      case "2":
+        return "Normal";
+      case "3":
+        return "Alta";
+      default:
+        return "Não definido";
+    }
+  }
+
+  function prioridadeStyle(param) {
+    switch (param) {
+      case "1":
+        return "smile";
+      case "2":
+        return "meh";
+      case "3":
+        return "frown";
+      default:
+        return "Não definido";
+    }
   }
 
   return (
@@ -76,8 +102,12 @@ function App() {
                 <h6>
                   Prioridade:{" "}
                   <span className="ms-1 text-black">
-                    <i className="me-1 fa-regular fa-face-frown"></i>{" "}
-                    {ativ.prioridade}
+                    <i
+                      className={
+                        "me-1 far fa-face-" + prioridadeStyle(ativ.prioridade)
+                      }
+                    ></i>{" "}
+                    {prioridadeLabel(ativ.prioridade)}
                   </span>
                 </h6>
               </div>

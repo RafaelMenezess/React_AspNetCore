@@ -20,7 +20,7 @@ let initialState = [
 function App() {
   const [atividades, setAtividades] = useState(initialState);
 
-  function addAtividades(e) {
+  function addAtividade(e) {
     e.preventDefault();
 
     const atividade = {
@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      <AtividadeForm />
+      <AtividadeForm addAtividade={addAtividade} atividades={atividades} />
 
       <div className="mt-3">
         {atividades.map((ativ) => (

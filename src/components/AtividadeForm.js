@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function AtividadeForm() {
+export default function AtividadeForm(props) {
   return (
     <form className="row g-3">
       <div className="col-md-6">
@@ -13,7 +13,7 @@ export default function AtividadeForm() {
           value={
             Math.max.apply(
               Math,
-              atividades.map((item) => item.id)
+              props.atividades.map((item) => item.id)
             ) + 1
           }
         />
@@ -37,7 +37,10 @@ export default function AtividadeForm() {
       </div>
       <hr />
       <div className="col-12">
-        <button className="btn btn-outline-secondary" onClick={addAtividades}>
+        <button
+          className="btn btn-outline-secondary"
+          onClick={props.addAtividade}
+        >
           + Atividade
         </button>
       </div>

@@ -1,26 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function AtividadeForm(props) {
+  const [atividade, setAtividade] = useState({});
+
+  const inputTextHandler = (e) => {
+    const { name, value } = e.target;
+
+    setAtividade({ ...atividade, [name]: value });
+  };
+
+  // Math.max.apply(
+  //   Math,
+  //   props.atividades.map((item) => item.id)
+  // ) + 1
+
   return (
     <form className="row g-3">
       <div className="col-md-6">
         <label className="form-label">Id</label>
         <input
+          name="id"
           id="id"
+          onChange={inputTextHandler}
           type="text"
           className="form-control"
-          readOnly
-          value={
-            Math.max.apply(
-              Math,
-              props.atividades.map((item) => item.id)
-            ) + 1
-          }
+          value={atividade.id}
         />
       </div>
       <div className="col-md-6">
         <label className="form-label">Prioridade</label>
-        <select id="prioridade" className="form-select">
+        <select
+          name="prioridade"
+          value={atividade.prioridade}
+          onChange={inputTextHandler}
+          id="prioridade"
+          className="form-select"
+        >
           <option defaultValue="0">Selecionar...</option>
           <option value="1">Baixa</option>
           <option value="2">Normal</option>
@@ -29,11 +44,25 @@ export default function AtividadeForm(props) {
       </div>
       <div className="col-md-6">
         <label className="form-label">Título</label>
-        <input id="titulo" type="text" className="form-control" />
+        <input
+          id="titulo"
+          name="titulo"
+          value={atividade.titulo}
+          onChange={inputTextHandler}
+          type="text"
+          className="form-control"
+        />
       </div>
       <div className="col-md-6">
         <label className="form-label">Descrição</label>
-        <input id="descricao" type="text" className="form-control" />
+        <input
+          id="descricao"
+          name="descricao"
+          value={atividade.descricao}
+          onChange={inputTextHandler}
+          type="text"
+          className="form-control"
+        />
       </div>
       <hr />
       <div className="col-12">

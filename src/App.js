@@ -16,6 +16,12 @@ let initialState = [
     titulo: "titulo",
     descricao: "Segunda Atividade",
   },
+  {
+    id: 3,
+    prioridade: "3",
+    titulo: "titulo",
+    descricao: "Terceira Atividade",
+  },
 ];
 
 function App() {
@@ -46,6 +52,17 @@ function App() {
     setAtividades([...atividadesFiltradas]);
   }
 
+  function cancelarAtividade() {
+    setAtividade({ id: 0 });
+  }
+
+  function atualizarAtividade(ativ) {
+    setAtividades(
+      atividades.map((item) => (item.id === ativ.id ? ativ : item))
+    );
+    setAtividade({ id: 0 });
+  }
+
   function pegarAtividade(id) {
     const atividade = atividades.filter((atividade) => atividade.id === id);
     setAtividade(atividade[0]);
@@ -55,6 +72,8 @@ function App() {
     <>
       <AtividadeForm
         addAtividade={addAtividade}
+        atualizarAtividade={atualizarAtividade}
+        cancelarAtividade={cancelarAtividade}
         atividadeSelecionada={atividade}
         atividades={atividades}
       />

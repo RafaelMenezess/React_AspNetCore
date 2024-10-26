@@ -55,7 +55,7 @@ function App() {
     <>
       <AtividadeForm
         addAtividade={addAtividade}
-        atividadeSelcionada={atividade}
+        atividadeSelecionada={atividade}
         atividades={atividades}
       />
       <AtividadeLista

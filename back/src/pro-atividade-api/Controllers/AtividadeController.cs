@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace pro_atividade_api.Controllers
@@ -16,20 +12,26 @@ namespace pro_atividade_api.Controllers
             return "método Get";
         }
 
+        [HttpGet("{id}")]
+        public string Get(int id)
+        {
+            return $"método Get com id:{id}";
+        }
+
         [HttpPost]
         public string Post()
         {
             return "método Post";
         }
 
-        [HttpPut]
-        public string Put()
+        [HttpPut("{id}")]
+        public string Put(int id)
         {
             return "método Put";
         }
 
-        [HttpDelete]
-        public string Delete()
+        [HttpDelete("{id}")]
+        public string Delete(int id)
         {
             return "método Delete";
         }

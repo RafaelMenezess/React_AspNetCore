@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using pro_atividade_api.Data;
+using pro_atividade_api.Models;
 
 namespace pro_atividade_api.Controllers
 {
@@ -6,35 +11,69 @@ namespace pro_atividade_api.Controllers
     [Route("api/[controller]")]
     public class AtividadeController : ControllerBase
     {
-        [HttpGet]
-        public string Get()
+        private readonly DataContext _context;
+        public AtividadeController(DataContext context)
         {
-            return "método Get";
+            _context = context;
+        }
+
+        [HttpGet]
+        public IEnumerable<Atividade> Get()
+        {
+            return _context.Atividades;
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public Atividade Get(int id)
         {
-            return $"método Get com id:{id}";
+            return _context.Atividades.FirstOrDefault(atv => atv.id == id); ;
         }
 
         [HttpPost]
-        public string Post()
+        public IEnumerable<Atividade> Post(Atividade atv)
         {
-            return "método Post";
+            _context.Atividades.Add(atv);
+            if (_context.SaveChanges() > 0)
+            {
+                return _context.Atividades;
+            }
+            else
+            {
+                throw new Exception("Não foi possível adicionar a atividade");
+            }
         }
 
         [HttpPut("{id}")]
-        public string Put(int id)
+        public Atividade Put(int id, Atividade atv)
         {
-            return "método Put";
+            if (atv.id != id)
+            {
+                throw new Exception("Você está tentando atualizar a atividade errada.");
+            }
+
+            _context.Update(atv);
+            if (_context.SaveChanges() > 0)
+            {
+                return _context.Atividades.FirstOrDefault(ativ => ativ.id == id);
+            }
+            else
+            {
+                throw new Exception("Não foi possível adicionar a atividade");
+            }
         }
 
         [HttpDelete("{id}")]
-        public string Delete(int id)
+        public bool Delete(int id)
         {
-            return "método Delete";
-        }
+            var atv = _context.Atividades.FirstOrDefault(ativ => ativ.id == id);
+            if (atv == null)
+            {
+                throw new Exception("Ativade não encontrada");
+            }
 
+            _context.Remove(atv);
+
+            return _context.SaveChanges() > 0;
+        }
     }
 }

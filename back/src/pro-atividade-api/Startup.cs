@@ -45,6 +45,7 @@ namespace pro_atividade_api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "pro_atividade_api", Version = "v1" });
             });
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,6 +63,10 @@ namespace pro_atividade_api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(opt => opt.AllowAnyHeader()
+                                  .AllowAnyHeader()
+                                  .AllowAnyOrigin());
 
             app.UseEndpoints(endpoints =>
             {

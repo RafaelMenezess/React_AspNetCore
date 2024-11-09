@@ -40,12 +40,14 @@ function App() {
     setAtividade({ id: 0 });
   }
 
-  function atualizarAtividade(ativ) {
+  const atualizarAtividade = async (ativ) => {
+    const response = await api.put(`Atividade/${ativ.id}`, ativ);
+    const { id } = response.data;
     setAtividades(
-      atividades.map((item) => (item.id === ativ.id ? ativ : item))
+      atividades.map((item) => (item.id === id ? response.data : item))
     );
     setAtividade({ id: 0 });
-  }
+  };
 
   function pegarAtividade(id) {
     const atividade = atividades.filter((atividade) => atividade.id === id);

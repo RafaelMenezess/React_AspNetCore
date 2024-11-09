@@ -27,12 +27,14 @@ function App() {
     setAtividades([...atividades, response.data]);
   };
 
-  function deletarAtividade(id) {
-    const atividadesFiltradas = atividades.filter(
-      (atividade) => atividade.id !== id
-    );
-    setAtividades([...atividadesFiltradas]);
-  }
+  const deletarAtividade = async (id) => {
+    if (await api.delete(`Atividade/${id}`)) {
+      const atividadesFiltradas = atividades.filter(
+        (atividade) => atividade.id !== id
+      );
+      setAtividades([...atividadesFiltradas]);
+    }
+  };
 
   function cancelarAtividade() {
     setAtividade({ id: 0 });

@@ -45,7 +45,13 @@ namespace pro_atividade_api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "pro_atividade_api", Version = "v1" });
             });
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:3000")
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod()); // Inclui DELETE, GET, POST, etc.
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,9 +70,7 @@ namespace pro_atividade_api
 
             app.UseAuthorization();
 
-            app.UseCors(opt => opt.AllowAnyHeader()
-                                  .AllowAnyHeader()
-                                  .AllowAnyOrigin());
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseEndpoints(endpoints =>
             {

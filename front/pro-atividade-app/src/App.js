@@ -7,10 +7,22 @@ import api from "./api/atividade";
 
 function App() {
   const [showAtividadeModal, setShowAtividadeModal] = useState(false);
+  const [smshowConfirmModal, setSmshowConfirmModal] = useState(false);
+
   const [atividades, setAtividades] = useState([]);
   const [atividade, setAtividade] = useState({ id: 0 });
 
   const handleAtividadeModal = () => setShowAtividadeModal(!showAtividadeModal);
+
+  const handleConfirmModal = (id) => {
+    if (id !== 0 && id !== undefined) {
+      const atividade = atividades.filter((atividade) => atividade.id === id);
+      setAtividade(atividade[0]);
+    } else {
+      setAtividade({ id: 0 });
+    }
+    setSmshowConfirmModal(!smshowConfirmModal);
+  };
 
   const pegaTodasAtividades = async () => {
     const response = await api.get("atividade");
@@ -39,6 +51,7 @@ function App() {
   };
 
   const deletarAtividade = async (id) => {
+    handleConfirmModal(0);
     if (await api.delete(`Atividade/${id}`)) {
       const atividadesFiltradas = atividades.filter(
         (atividade) => atividade.id !== id
@@ -82,7 +95,7 @@ function App() {
 
       <AtividadeLista
         atividades={atividades}
-        deletarAtividade={deletarAtividade}
+        handleConfirmModal={handleConfirmModal}
         pegarAtividade={pegarAtividade}
       />
 
@@ -101,6 +114,33 @@ function App() {
             atividades={atividades}
           />
         </Modal.Body>
+      </Modal>
+
+      <Modal show={smshowConfirmModal} onHide={handleConfirmModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            Excluindo Atividade {atividade.id !== 0 ? atividade.id : ""}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza que deseja excluir a Atividade {atividade.id}
+        </Modal.Body>
+        <Modal.Footer className="d-flex justify-content-between">
+          <button
+            className="btn btn-outline-success me-2"
+            onClick={() => deletarAtividade(atividade.id)}
+          >
+            <i className="fas fa-check me-2"></i>
+            Sim
+          </button>
+          <button
+            className="btn btn-danger me-2"
+            onClick={() => handleConfirmModal(0)}
+          >
+            <i className="fas fa-times me-2"></i>
+            Não
+          </button>
+        </Modal.Footer>
       </Modal>
     </>
   );

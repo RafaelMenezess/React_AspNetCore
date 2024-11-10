@@ -6,12 +6,11 @@ import AtividadeLista from "./components/AtividadeLista";
 import api from "./api/atividade";
 
 function App() {
-  const [show, setShow] = useState(false);
+  const [showAtividadeModal, setShowAtividadeModal] = useState(false);
   const [atividades, setAtividades] = useState([]);
   const [atividade, setAtividade] = useState({ id: 0 });
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleAtividadeModal = () => setShowAtividadeModal(!showAtividadeModal);
 
   const pegaTodasAtividades = async () => {
     const response = await api.get("atividade");
@@ -57,6 +56,7 @@ function App() {
   function pegarAtividade(id) {
     const atividade = atividades.filter((atividade) => atividade.id === id);
     setAtividade(atividade[0]);
+    handleAtividadeModal();
   }
 
   return (
@@ -65,7 +65,7 @@ function App() {
         <h1 className="m-0 p-0">
           Atividade {atividade.id !== 0 ? atividade.id : ""}
         </h1>
-        <Button variant="outline-secondary" onClick={handleShow}>
+        <Button variant="outline-secondary" onClick={handleAtividadeModal}>
           <i className="fas fa-plus"></i>
         </Button>
       </div>
@@ -76,7 +76,7 @@ function App() {
         pegarAtividade={pegarAtividade}
       />
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={showAtividadeModal} onHide={handleAtividadeModal}>
         <Modal.Header closeButton>
           <Modal.Title>
             Atividade {atividade.id !== 0 ? atividade.id : ""}

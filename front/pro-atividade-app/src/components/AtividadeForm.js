@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Atividade from "./Atividade";
 
 const atividadeInicial = {
   id: 0,

@@ -26,6 +26,8 @@ function App() {
   }, []);
 
   const addAtividade = async (ativ) => {
+    handleAtividadeModal();
+
     const response = await api.post("atividade", ativ);
 
     setAtividades([...atividades, response.data]);
@@ -42,9 +44,12 @@ function App() {
 
   function cancelarAtividade() {
     setAtividade({ id: 0 });
+    handleAtividadeModal();
   }
 
   const atualizarAtividade = async (ativ) => {
+    handleAtividadeModal();
+
     const response = await api.put(`Atividade/${ativ.id}`, ativ);
     const { id } = response.data;
     setAtividades(

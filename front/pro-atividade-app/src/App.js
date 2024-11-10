@@ -61,36 +61,36 @@ function App() {
 
   return (
     <>
-      <AtividadeForm
-        addAtividade={addAtividade}
-        atualizarAtividade={atualizarAtividade}
-        cancelarAtividade={cancelarAtividade}
-        atividadeSelecionada={atividade}
-        atividades={atividades}
-      />
+      <div className="d-flex justify-content-between align-items-end mt-2 pb-3 border-bottom border-1">
+        <h1 className="m-0 p-0">
+          Atividade {atividade.id !== 0 ? atividade.id : ""}
+        </h1>
+        <Button variant="outline-secondary" onClick={handleShow}>
+          <i className="fas fa-plus"></i>
+        </Button>
+      </div>
+
       <AtividadeLista
         atividades={atividades}
         deletarAtividade={deletarAtividade}
         pegarAtividade={pegarAtividade}
       />
 
-      <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
-      </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>
+            Atividade {atividade.id !== 0 ? atividade.id : ""}
+          </Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Body>
+          <AtividadeForm
+            addAtividade={addAtividade}
+            atualizarAtividade={atualizarAtividade}
+            cancelarAtividade={cancelarAtividade}
+            atividadeSelecionada={atividade}
+            atividades={atividades}
+          />
+        </Modal.Body>
       </Modal>
     </>
   );

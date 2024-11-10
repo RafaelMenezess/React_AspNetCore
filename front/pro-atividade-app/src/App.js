@@ -17,6 +17,11 @@ function App() {
     return response.data;
   };
 
+  const novaAtividade = () => {
+    setAtividade({ id: 0 });
+    handleAtividadeModal();
+  };
+
   useEffect(() => {
     const getAtividades = async () => {
       const todasAtividades = await pegaTodasAtividades();
@@ -70,7 +75,7 @@ function App() {
         <h1 className="m-0 p-0">
           Atividade {atividade.id !== 0 ? atividade.id : ""}
         </h1>
-        <Button variant="outline-secondary" onClick={handleAtividadeModal}>
+        <Button variant="outline-secondary" onClick={novaAtividade}>
           <i className="fas fa-plus"></i>
         </Button>
       </div>

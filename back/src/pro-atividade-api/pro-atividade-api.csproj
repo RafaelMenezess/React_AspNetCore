@@ -11,12 +11,17 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference> 
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.10"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLite" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference> 
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\pro-atividade-data\pro-atividade-data.csproj" />
+    <ProjectReference Include="..\pro-atividade-domain\pro-atividade-domain.csproj" />
   </ItemGroup>
 
 </Project>

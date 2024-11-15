@@ -1,5 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\pro-atividade-domain\pro-atividade-domain.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>pro_atividade_data</RootNamespace>

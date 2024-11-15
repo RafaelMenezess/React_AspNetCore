@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using pro_atividade_api.Data;
-using pro_atividade_api.Models;
+using pro_atividade_data.Context;
+using pro_atividade_domain.Entities;
 
 namespace pro_atividade_api.Controllers
 {
@@ -26,7 +26,7 @@ namespace pro_atividade_api.Controllers
         [HttpGet("{id}")]
         public Atividade Get(int id)
         {
-            return _context.Atividades.FirstOrDefault(atv => atv.id == id); ;
+            return _context.Atividades.FirstOrDefault(atv => atv.Id == id); ;
         }
 
         [HttpPost]
@@ -46,7 +46,7 @@ namespace pro_atividade_api.Controllers
         [HttpPut("{id}")]
         public Atividade Put(int id, Atividade atv)
         {
-            if (atv.id != id)
+            if (atv.Id != id)
             {
                 throw new Exception("Você está tentando atualizar a atividade errada.");
             }
@@ -54,7 +54,7 @@ namespace pro_atividade_api.Controllers
             _context.Update(atv);
             if (_context.SaveChanges() > 0)
             {
-                return _context.Atividades.FirstOrDefault(ativ => ativ.id == id);
+                return _context.Atividades.FirstOrDefault(ativ => ativ.Id == id);
             }
             else
             {
@@ -65,7 +65,7 @@ namespace pro_atividade_api.Controllers
         [HttpDelete("{id}")]
         public bool Delete(int id)
         {
-            var atv = _context.Atividades.FirstOrDefault(ativ => ativ.id == id);
+            var atv = _context.Atividades.FirstOrDefault(ativ => ativ.Id == id);
             if (atv == null)
             {
                 throw new Exception("Ativade não encontrada");

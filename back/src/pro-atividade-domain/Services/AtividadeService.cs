@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Threading.Tasks;
 using pro_atividade_domain.Entities;
 using pro_atividade_domain.Interfaces.Repositories;
@@ -11,7 +8,7 @@ namespace pro_atividade_domain.Services
 {
     public class AtividadeService : IAtividadeService
     {
-        public IAtividadeRepo _atividadeRepo { get; }
+        public readonly IAtividadeRepo _atividadeRepo;
         public AtividadeService(IAtividadeRepo atividadeRepo)
         {
             _atividadeRepo = atividadeRepo;

@@ -11,7 +11,11 @@ namespace pro_atividade_domain.Entities
         public DateTime? DataConclusao { get; set; }
         public Prioridade Prioridade { get; set; }
 
-        public Atividade() => DataCriacao = DateTime.Now;
+        public Atividade()
+        {
+            DataCriacao = DateTime.Now;
+            DataConclusao = null;
+        }
 
         public Atividade(int id, string titulo, string descricao) : this()
         {
@@ -28,7 +32,7 @@ namespace pro_atividade_domain.Entities
             }
             else
             {
-                throw new Exception($"Atividade já concluida em: {DataConclusao.Value.ToString("dd/MM/yyyy hh:mm")}");
+                throw new Exception($"Atividade já concluida em: {DataConclusao?.ToString("dd/MM/yyyy hh:mm")}");
             }
         }
     }

@@ -22,7 +22,7 @@ namespace pro_atividade_data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DataConclusao")
+                    b.Property<DateTime?>("DataConclusao")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("DataCriacao")

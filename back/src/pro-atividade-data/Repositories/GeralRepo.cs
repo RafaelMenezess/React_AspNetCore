@@ -6,7 +6,7 @@ namespace pro_atividade_data.Repositories
 {
     public class GeralRepo : IGeralRepo
     {
-        public DataContext _context { get; }
+        public readonly DataContext _context;
         public GeralRepo(DataContext context)
         {
             _context = context;

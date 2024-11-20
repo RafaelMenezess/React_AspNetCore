@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using pro_atividade_data.Context;
 using pro_atividade_domain.Interfaces.Repositories;
@@ -11,7 +10,6 @@ namespace pro_atividade_data.Repositories
         public GeralRepo(DataContext context)
         {
             _context = context;
-
         }
         public void Adicionar<T>(T entity) where T : class
         {

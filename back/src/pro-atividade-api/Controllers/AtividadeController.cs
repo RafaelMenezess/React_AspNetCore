@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using pro_atividade_data.Context;
 using pro_atividade_domain.Entities;
+using pro_atividade_domain.Interfaces.Services;
 
 namespace pro_atividade_api.Controllers
 {
@@ -11,10 +11,10 @@ namespace pro_atividade_api.Controllers
     [Route("api/[controller]")]
     public class AtividadeController : ControllerBase
     {
-        private readonly DataContext _context;
-        public AtividadeController(DataContext context)
+        public readonly IAtividadeService _atividadeService;
+        public AtividadeController(IAtividadeService atividadeService)
         {
-            _context = context;
+            _atividadeService = atividadeService;
         }
 
         [HttpGet]

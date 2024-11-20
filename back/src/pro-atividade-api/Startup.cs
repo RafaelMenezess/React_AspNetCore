@@ -7,6 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using pro_atividade_data.Context;
+using pro_atividade_data.Repositories;
+using pro_atividade_domain.Interfaces.Repositories;
+using pro_atividade_domain.Interfaces.Services;
+using pro_atividade_domain.Services;
 
 namespace pro_atividade_api
 {
@@ -27,6 +31,12 @@ namespace pro_atividade_api
                     Configuration.GetConnectionString("Default")
                 )
             );
+
+            services.AddScoped<IAtividadeRepo, AtividadeRepo>();
+            services.AddScoped<IAtividadeService, AtividadeService>();
+            services.AddScoped<IGeralRepo, GeralRepo>();
+
+
             services.AddControllers()
             .AddJsonOptions(
                 opt =>

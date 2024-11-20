@@ -3,10 +3,10 @@ using pro_atividade_domain.Entities;
 
 namespace pro_atividade_domain.Interfaces.Repositories
 {
-    public interface IAtividadeRepo
+    public interface IAtividadeRepo : IGeralRepo
     {
         Task<Atividade[]> GetAllAsync();
-        Task<Atividade> GetByIdAsync();
-        Task<Atividade> GetByTitleAsync();
+        Task<Atividade> GetByIdAsync(int id);
+        Task<Atividade> GetByTitleAsync(string titulo);
     }
 }

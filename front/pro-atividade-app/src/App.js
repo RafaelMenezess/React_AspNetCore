@@ -1,15 +1,13 @@
 import "./App.css";
-import Atividade from "./pages/atividades/Atividade";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Atividades from "./pages/atividades/Atividades";
+import { Switch, Route } from "react-router-dom";
 
 export default function App() {
   return (
     <>
-      <Router>
-        <Route path="/atividade" component={Atividade} />
-        <Route path="/clientes" component={Cliente} />
-        <Route path="/home" component={Home} />
-      </Router>
+      <Route path="/atividades" component={Atividades} />
+      <Route path="/clientes" component={Cliente} />
+      <Route path="/home" component={Home} />
     </>
   );
 }

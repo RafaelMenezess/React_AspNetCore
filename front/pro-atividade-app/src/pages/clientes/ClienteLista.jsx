@@ -48,7 +48,10 @@ export default function ClienteLista() {
   };
 
   const clientesFiltrados = clientes.filter((cliente) => {
-    return cliente.nome.toLocaleLowerCase().indexOf(termoBusca) !== -1;
+    return Object.values(cliente)
+      .join(" ")
+      .toLocaleLowerCase()
+      .includes(termoBusca.toLocaleLowerCase());
   });
 
   return (

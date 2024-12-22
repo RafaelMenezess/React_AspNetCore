@@ -11,7 +11,7 @@ export default function App() {
       <Route path="/" exact component={Dashboard} />
       <Route path="/atividade/lista" component={Atividades} />
       <Route path="/cliente/lista" component={Cliente} />
-      <Route path="/cliente/detalhe" component={ClienteForm} />
+      <Route path="/cliente/detalhe/:id?" component={ClienteForm} />
     </Switch>
   );
 }

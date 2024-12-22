@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import TitlePage from "../../components/TitlePage";
-import InputGroupText from "react-bootstrap/esm/InputGroupText";
 import { Form, InputGroup } from "react-bootstrap";
 
 const clientes = [
@@ -42,14 +41,24 @@ const clientes = [
 ];
 
 export default function ClienteLista() {
+  const [termoBusca, setTermoBusca] = useState("");
+
+  const handleInputChange = (e) => {
+    setTermoBusca(e.target.value);
+  };
+
+  const clientesFiltrados = clientes.filter((cliente) => {
+    return cliente.nome.toLocaleLowerCase().indexOf(termoBusca) !== -1;
+  });
+
   return (
     <>
       <TitlePage title={"Cliente Lista"} />
       <InputGroup className="mt-3 mb-3">
         <InputGroup.Text>Buscar:</InputGroup.Text>
         <Form.Control
-          aria-label="Default"
-          aria-describedby="inputGroup-sizing-default"
+          onChange={handleInputChange}
+          placeholder="Buscar por nome do cliente"
         />
       </InputGroup>
       <table className="table table-striped table-hover">
@@ -64,7 +73,7 @@ export default function ClienteLista() {
           </tr>
         </thead>
         <tbody>
-          {clientes.map((cliente) => (
+          {clientesFiltrados.map((cliente) => (
             <tr key={cliente.id}>
               <td>{cliente.id}</td>
               <td>{cliente.nome}</td>

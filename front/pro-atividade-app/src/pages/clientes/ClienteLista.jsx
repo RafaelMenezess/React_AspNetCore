@@ -57,13 +57,13 @@ export default function ClienteLista() {
   });
 
   const novoCliente = () => {
-    history.push("/clinte/detalhe");
+    history.push("/cliente/detalhe");
   };
 
   return (
     <>
       <TitlePage title="Cliente Lista">
-        <Button variant="outline-secundary" onClick={novoCliente}>
+        <Button variant="outline-secondary" onClick={novoCliente}>
           <i className="fas fa-plus me-2"></i>
           Novo Cliente
         </Button>

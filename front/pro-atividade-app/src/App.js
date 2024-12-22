@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Cliente from "./pages/clientes/Cliente";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ClienteForm from "./pages/clientes/ClienteForm";
+import PageNotFound from "./pages/PageNotFound";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Route path="/atividade/lista" component={Atividades} />
       <Route path="/cliente/lista" component={Cliente} />
       <Route path="/cliente/detalhe/:id?" component={ClienteForm} />
+      <Route component={PageNotFound} />
     </Switch>
   );
 }

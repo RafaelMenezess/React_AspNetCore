@@ -1,0 +1,13 @@
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.Hosting;
+global using System.Text.Json.Serialization;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.OpenApi.Models;
+global using pro_atividade_data.Context;
+global using pro_atividade_data.Repositories;
+global using pro_atividade_domain.Interfaces.Repositories;
+global using pro_atividade_domain.Interfaces.Services;
+global using pro_atividade_domain.Services;

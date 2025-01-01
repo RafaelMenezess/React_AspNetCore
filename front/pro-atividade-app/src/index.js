@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import App from "./App";
 import Menu from "./components/Menu";
 import "bootswatch/dist/cosmo/bootstrap.min.css";
-import { BrowserRouter as Router } from "react-router-dom/cjs/react-router-dom.min";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

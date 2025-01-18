@@ -4,22 +4,30 @@ import api from "../../api/atividade";
 import TitlePage from "../../components/TitlePage";
 import AtividadeLista from "./AtividadeLista";
 import AtividadeForm from "./AtividadeForm";
+import { IAtividade, Prioridade } from "../../model/atividade";
 
-export default function Atividade() {
+const atividadeInicial: IAtividade = {
+  id: 0,
+  titulo: "",
+  prioridade: Prioridade.NaoDefinido,
+  descricao: "",
+};
+
+const Atividade = () => {
   const [showAtividadeModal, setShowAtividadeModal] = useState(false);
   const [smshowConfirmModal, setSmshowConfirmModal] = useState(false);
 
   const [atividades, setAtividades] = useState([]);
-  const [atividade, setAtividade] = useState({ id: 0 });
+  const [atividade, setAtividade] = useState(atividadeInicial);
 
   const handleAtividadeModal = () => setShowAtividadeModal(!showAtividadeModal);
 
-  const handleConfirmModal = (id) => {
+  const handleConfirmModal = (id: number) => {
     if (id !== 0 && id !== undefined) {
       const atividade = atividades.filter((atividade) => atividade.id === id);
       setAtividade(atividade[0]);
     } else {
-      setAtividade({ id: 0 });
+      setAtividade(atividadeInicial);
     }
     setSmshowConfirmModal(!smshowConfirmModal);
   };
@@ -30,7 +38,7 @@ export default function Atividade() {
   };
 
   const novaAtividade = () => {
-    setAtividade({ id: 0 });
+    setAtividade(atividadeInicial);
     handleAtividadeModal();
   };
 
@@ -42,7 +50,7 @@ export default function Atividade() {
     getAtividades();
   }, []);
 
-  const addAtividade = async (ativ) => {
+  const addAtividade = async (ativ: IAtividade) => {
     handleAtividadeModal();
 
     const response = await api.post("atividade", ativ);
@@ -50,7 +58,7 @@ export default function Atividade() {
     setAtividades([...atividades, response.data]);
   };
 
-  const deletarAtividade = async (id) => {
+  const deletarAtividade = async (id: number) => {
     handleConfirmModal(0);
     if (await api.delete(`Atividade/${id}`)) {
       const atividadesFiltradas = atividades.filter(
@@ -61,11 +69,11 @@ export default function Atividade() {
   };
 
   function cancelarAtividade() {
-    setAtividade({ id: 0 });
+    setAtividade(atividadeInicial);
     handleAtividadeModal();
   }
 
-  const atualizarAtividade = async (ativ) => {
+  const atualizarAtividade = async (ativ: IAtividade) => {
     handleAtividadeModal();
 
     const response = await api.put(`Atividade/${ativ.id}`, ativ);
@@ -73,10 +81,10 @@ export default function Atividade() {
     setAtividades(
       atividades.map((item) => (item.id === id ? response.data : item))
     );
-    setAtividade({ id: 0 });
+    setAtividade(atividadeInicial);
   };
 
-  function pegarAtividade(id) {
+  function pegarAtividade(id: number) {
     const atividade = atividades.filter((atividade) => atividade.id === id);
     setAtividade(atividade[0]);
     handleAtividadeModal();
@@ -144,3 +152,5 @@ export default function Atividade() {
     </>
   );
 }
+
+export default Atividade; 

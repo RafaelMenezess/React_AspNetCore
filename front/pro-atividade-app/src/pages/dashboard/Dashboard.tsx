@@ -20,7 +20,7 @@ const Dashboard = () => {
           </Col>
           <Col>
             <Card border="secondary">
-              <Card.Header bg={"danger"}>Atividades totais</Card.Header>
+              <Card.Header>Atividades totais</Card.Header>
               <Card.Body>
                 <Card.Title>
                   <h1 className="text-center">256</h1>

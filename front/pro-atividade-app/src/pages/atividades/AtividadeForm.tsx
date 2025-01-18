@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { IAtividade } from "../../model/atividade";
+import { AtividadeFormProps } from "../../model/atividadeProps";
 
-const atividadeInicial = {
+const atividadeInicial: IAtividade = {
   id: 0,
   titulo: "",
-  prioridade: 0,
+  prioridade: "",
   descricao: "",
 };
 
-export default function AtividadeForm(props) {
-  const [atividade, setAtividade] = useState(atividadeAtual());
+const AtividadeForm: React.FC<AtividadeFormProps> = ({
+    atividadeSelecionada,
+    atualizarAtividade,
+    addAtividade,
+    cancelarAtividade
+  }: AtividadeFormProps
+) => {
+  const [atividade, setAtividade] = useState<IAtividade>(atividadeAtual());
 
   useEffect(() => {
-    if (props.atividadeSelecionada.id !== 0) {
-      setAtividade(props.atividadeSelecionada);
+    if (atividadeSelecionada.id !== 0) {
+      setAtividade(atividadeSelecionada);
     }
-  }, [props.atividadeSelecionada]);
+  }, [atividadeSelecionada]);
 
   const inputTextHandler = (e) => {
     const { name, value } = e.target;
@@ -25,10 +33,10 @@ export default function AtividadeForm(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (props.atividadeSelecionada.id !== 0) {
-      props.atualizarAtividade(atividade);
+    if (atividadeSelecionada.id !== 0) {
+      atualizarAtividade(atividade);
     } else {
-      props.addAtividade(atividade);
+      addAtividade(atividade);
     }
     setAtividade(atividadeInicial);
   };
@@ -36,14 +44,14 @@ export default function AtividadeForm(props) {
   const handlerCancelar = (e) => {
     e.preventDefault();
 
-    props.cancelarAtividade();
+    cancelarAtividade();
 
     setAtividade(atividadeInicial);
   };
 
-  function atividadeAtual() {
-    if (props.atividadeSelecionada.id !== 0) {
-      return props.atividadeSelecionada;
+  function atividadeAtual(): IAtividade {
+    if (atividadeSelecionada.id !== 0) {
+      return atividadeSelecionada;
     } else {
       return atividadeInicial;
     }
@@ -85,7 +93,6 @@ export default function AtividadeForm(props) {
             name="descricao"
             value={atividade.descricao}
             onChange={inputTextHandler}
-            type="text"
             className="form-control"
           />
           <hr />
@@ -116,3 +123,5 @@ export default function AtividadeForm(props) {
     </>
   );
 }
+
+export default AtividadeForm;

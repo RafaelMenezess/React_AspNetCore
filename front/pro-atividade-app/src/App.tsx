@@ -5,8 +5,9 @@ import Cliente from "./pages/clientes/Cliente";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ClienteForm from "./pages/clientes/ClienteForm";
 import PageNotFound from "./pages/PageNotFound";
+import React from "react";
 
-const  App = () => {
+const  App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />

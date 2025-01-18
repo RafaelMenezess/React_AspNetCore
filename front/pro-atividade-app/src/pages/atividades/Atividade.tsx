@@ -17,8 +17,8 @@ const Atividade = () => {
   const [showAtividadeModal, setShowAtividadeModal] = useState(false);
   const [smshowConfirmModal, setSmshowConfirmModal] = useState(false);
 
-  const [atividades, setAtividades] = useState([]);
-  const [atividade, setAtividade] = useState(atividadeInicial);
+  const [atividades, setAtividades] = useState<IAtividade[]>([]);
+  const [atividade, setAtividade] = useState<IAtividade>(atividadeInicial);
 
   const handleAtividadeModal = () => setShowAtividadeModal(!showAtividadeModal);
 
@@ -118,12 +118,11 @@ const Atividade = () => {
             atualizarAtividade={atualizarAtividade}
             cancelarAtividade={cancelarAtividade}
             atividadeSelecionada={atividade}
-            atividades={atividades}
           />
         </Modal.Body>
       </Modal>
 
-      <Modal show={smshowConfirmModal} onHide={handleConfirmModal}>
+      <Modal show={smshowConfirmModal} onHide={() => handleConfirmModal(0)}>
         <Modal.Header closeButton>
           <Modal.Title>
             Excluindo Atividade {atividade.id !== 0 ? atividade.id : ""}

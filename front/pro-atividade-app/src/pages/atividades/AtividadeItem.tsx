@@ -1,17 +1,5 @@
 import React from "react";
-
-interface atividade{
-  id: number;
-  prioridade: string;
-  titulo: string;
-  descricao: string;
-}
-
-interface AtividadeItemProps{
-  ativ: atividade;
-  pegarAtividade: (id: number) => void;
-  handleConfirmModal: (id: number) => void;
-}
+import { AtividadeItemProps } from "../../model/atividadeProps";
 
 const AtividadeItem: React.FC<AtividadeItemProps> = ({
           ativ,

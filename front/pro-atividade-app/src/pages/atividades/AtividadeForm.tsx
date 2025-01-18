@@ -24,13 +24,13 @@ const AtividadeForm: React.FC<AtividadeFormProps> = ({
     }
   }, [atividadeSelecionada]);
 
-  const inputTextHandler = (e) => {
+  const handleValue = (e: any) => {
     const { name, value } = e.target;
 
     setAtividade({ ...atividade, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (atividadeSelecionada.id !== 0) {
@@ -41,7 +41,7 @@ const AtividadeForm: React.FC<AtividadeFormProps> = ({
     setAtividade(atividadeInicial);
   };
 
-  const handlerCancelar = (e) => {
+  const handlerCancelar = (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     cancelarAtividade();
@@ -65,7 +65,7 @@ const AtividadeForm: React.FC<AtividadeFormProps> = ({
           <input
             name="titulo"
             value={atividade.titulo}
-            onChange={inputTextHandler}
+            onChange={handleValue}
             id="titulo"
             type="text"
             className="form-control"
@@ -76,7 +76,7 @@ const AtividadeForm: React.FC<AtividadeFormProps> = ({
           <select
             name="prioridade"
             value={atividade.prioridade}
-            onChange={inputTextHandler}
+            onChange={handleValue}
             id="prioridade"
             className="form-select"
           >
@@ -92,7 +92,7 @@ const AtividadeForm: React.FC<AtividadeFormProps> = ({
             id="descricao"
             name="descricao"
             value={atividade.descricao}
-            onChange={inputTextHandler}
+            onChange={handleValue}
             className="form-control"
           />
           <hr />

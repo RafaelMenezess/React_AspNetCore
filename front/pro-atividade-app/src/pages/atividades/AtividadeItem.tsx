@@ -1,5 +1,6 @@
 import React from "react";
 import { AtividadeItemProps } from "../../model/atividadeProps";
+import { Prioridade } from "../../model/atividade";
 
 const AtividadeItem: React.FC<AtividadeItemProps> = ({
           ativ,
@@ -9,9 +10,9 @@ const AtividadeItem: React.FC<AtividadeItemProps> = ({
     ) => {
   function prioridadeLabel(param: string) {
     switch (param) {
-      case "Baixa":
-      case "Normal":
-      case "Alta":
+      case Prioridade.Baixa:
+      case Prioridade.Normal:
+      case Prioridade.Alta:
         return param;
       default:
         return "Não definido";
@@ -20,11 +21,11 @@ const AtividadeItem: React.FC<AtividadeItemProps> = ({
 
   function prioridadeStyle(param: string, icone: boolean) {
     switch (param) {
-      case "Baixa":
+      case Prioridade.Baixa:
         return icone ? "smile" : "success";
-      case "Normal":
+      case Prioridade.Normal:
         return icone ? "meh" : "dark";
-      case "Alta":
+      case Prioridade.Alta:
         return icone ? "frown" : "warning";
       default:
         return "Não definido";

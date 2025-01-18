@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { IAtividade } from "../../model/atividade";
+import { IAtividade, Prioridade } from "../../model/atividade";
 import { AtividadeFormProps } from "../../model/atividadeProps";
 
 const atividadeInicial: IAtividade = {
   id: 0,
   titulo: "",
-  prioridade: "",
+  prioridade: Prioridade.NaoDefinido,
   descricao: "",
 };
 

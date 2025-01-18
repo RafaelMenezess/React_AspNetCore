@@ -1,5 +1,5 @@
 import "./App.css";
-import Atividades from "./pages/atividades/Atividades";
+import Atividade from "./pages/atividades/Atividade";
 import { Routes, Route } from "react-router-dom";
 import Cliente from "./pages/clientes/Cliente";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -11,8 +11,8 @@ const  App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      <Route path="/atividade/*" element={<Atividades />} />
-      <Route path="/atividade/:id/cliente" element={<Atividades />} />
+      <Route path="/atividade/*" element={<Atividade />} />
+      <Route path="/atividade/:id/cliente" element={<Atividade />} />
       <Route path="/cliente/*" element={<Cliente />} />
       <Route path="/cliente/:id/atividade" element={<Cliente />} />
       <Route path="/cliente/detalhe/" element={<ClienteForm />} />

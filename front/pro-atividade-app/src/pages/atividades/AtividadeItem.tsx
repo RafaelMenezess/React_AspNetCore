@@ -1,7 +1,25 @@
 import React from "react";
 
-export default function AtividadeItem(props) {
-  function prioridadeLabel(param) {
+interface atividade{
+  id: number;
+  prioridade: string;
+  titulo: string;
+  descricao: string;
+}
+
+interface AtividadeItemProps{
+  ativ: atividade;
+  pegarAtividade: (id: number) => void;
+  handleConfirmModal: (id: number) => void;
+}
+
+const AtividadeItem: React.FC<AtividadeItemProps> = ({
+          ativ,
+          pegarAtividade,
+          handleConfirmModal
+      }: AtividadeItemProps
+    ) => {
+  function prioridadeLabel(param: string) {
     switch (param) {
       case "Baixa":
       case "Normal":
@@ -12,7 +30,7 @@ export default function AtividadeItem(props) {
     }
   }
 
-  function prioridadeStyle(param, icone) {
+  function prioridadeStyle(param: string, icone: boolean) {
     switch (param) {
       case "Baixa":
         return icone ? "smile" : "success";
@@ -28,42 +46,42 @@ export default function AtividadeItem(props) {
   return (
     <div
       className={
-        "card mb-2 shadow-sm border-" + prioridadeStyle(props.ativ.prioridade)
+        "card mb-2 shadow-sm border-" + prioridadeStyle(ativ.prioridade, false)
       }
     >
       <div className="card-body">
         <div className="d-flex justify-content-between">
           <h5 className="card-title">
-            <span className="badge bg-secondary me-1">{props.ativ.id}</span>-
-            {props.ativ.titulo}
+            <span className="badge bg-secondary me-1">{ativ.id}</span>-
+            {ativ.titulo}
           </h5>
           <h6>
             Prioridade:{" "}
             <span
-              className={"ms-1 text-" + prioridadeStyle(props.ativ.prioridade)}
+              className={"ms-1 text-" + prioridadeStyle(ativ.prioridade, false)}
             >
               <i
                 className={
                   "me-1 far fa-face-" +
-                  prioridadeStyle(props.ativ.prioridade, true)
+                  prioridadeStyle(ativ.prioridade, true)
                 }
               ></i>{" "}
-              {prioridadeLabel(props.ativ.prioridade)}
+              {prioridadeLabel(ativ.prioridade)}
             </span>
           </h6>
         </div>
-        <p className="card-text">{props.ativ.descricao}</p>
+        <p className="card-text">{ativ.descricao}</p>
         <div className="d-flex justify-content-end pt-2 m-0 border-top">
           <button
             className="btn btn-sm btn-outline-primary me-2"
-            onClick={() => props.pegarAtividade(props.ativ.id)}
+            onClick={() => pegarAtividade(ativ.id)}
           >
             <i className="fas fa-pen me-2"></i>
             Editar
           </button>
           <button
             className="btn btn-sm btn-outline-danger"
-            onClick={() => props.handleConfirmModal(props.ativ.id)}
+            onClick={() => handleConfirmModal(ativ.id)}
           >
             <i className="fas fa-trash me-2"></i>
             Deletar
@@ -73,3 +91,5 @@ export default function AtividadeItem(props) {
     </div>
   );
 }
+
+export default AtividadeItem;
